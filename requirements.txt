@@ -1,0 +1,7 @@
+mcp>=1.2.0
+httpx>=0.24.0
+streamlit>=1.26.0
+json5>=0.9.14
+subprocess-tee>=0.4.1
+rich>=13.7.0
+duckduckgo_search
