@@ -5,3 +5,4 @@ json5>=0.9.14
 subprocess-tee>=0.4.1
 rich>=13.7.0
 duckduckgo_search
+crawl4ai>=0.4.3

@@ -22,6 +22,7 @@ from mcp.server.fastmcp import FastMCP
 # Import our custom tools
 from tools.web_scrape import fetch_url_as_markdown
 from tools.ddg_search import search_duckduckgo
+from tools.crawl4ai_scraper import crawl_and_extract_markdown
 
 # Initialize the MCP server with a descriptive name that reflects its purpose
 mcp = FastMCP("Web Tools")
@@ -56,6 +57,23 @@ async def ddg_search(query: str, region: str = "wt-wt", safesearch: str = "moder
         str: Formatted search results as text, or an error message if the search fails.
     """
     return await search_duckduckgo(keywords=query, region=region, safesearch=safesearch, timelimit=timelimit, max_results=max_results)
+
+@mcp.tool()
+async def advanced_scrape(url: str) -> str:
+    """
+    Scrape a webpage using advanced techniques and return clean, well-formatted markdown.
+    
+    This tool uses Crawl4AI to extract the main content from a webpage while removing
+    navigation bars, sidebars, footers, ads, and other non-essential elements. The result
+    is clean, well-formatted markdown focused on the actual content of the page.
+    
+    Args:
+        url (str): The URL to scrape. Can be with or without http(s):// prefix.
+        
+    Returns:
+        str: Well-formatted markdown content if successful, or an error message if not.
+    """
+    return await crawl_and_extract_markdown(url)
 
 if __name__ == "__main__":
     # Log Python version for debugging purposes
